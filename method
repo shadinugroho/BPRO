@@ -1,0 +1,23 @@
+public class WMethod02{
+
+public static void cetakgaris() {
+	for (int i=0;i<25;i++)
+		System.out.print("*");
+	System.out.println();
+	
+}
+
+	public static void cetakgaris (int panjanggaris){
+		for(int i=0;i<panjanggaris;i++)
+			System.out.print("*");
+		System.out.println();
+	}
+	public static void main (String[]args) 
+	{
+	   cetakgaris();
+	   System.out.println("View Data Customer");
+		cetakgaris(36);
+	   System.out.println("id\tNama\tAlamat");
+	    cetakgaris(46);
+		}
+}
