@@ -1,0 +1,298 @@
+import java.util.*;
+import java.io.*;
+public class DataMhs{
+
+  public static String id[][]={
+    {"user","user"},{"hadi","hadi"},{"root","root"},{"23031996","23031996"},{"admin","admin"}
+  };  
+public static String daftarNim[]={
+   "13410100249",
+"14410100044",
+"14410100045",
+"14410100047",
+"14410100048",
+"14410100049",
+"14410100050",
+"14410100052",
+"14410100053",
+"14410100054",
+"14410100055",
+"14410100056",
+"14410100057",
+"14410100059",
+"14410100061",
+"14410100062",
+"14410100063",
+"14410100065",
+"14410100066",
+"14410100067",
+"14410100068",
+"14410100069",
+"14410100070",
+"14410100071",
+"14410100072",
+"14410100073",
+"14410100074",
+"14410100075",
+"14410100076", 
+"14410100077",
+"14410100078",
+"14410100079",
+"14410100080",
+"14410100081",
+"14410100082",
+"14410100083"
+};
+  public static String []daftarNama = {
+    "Sunandar",
+"Nabil Perdana Putra",
+"Septian Agung Wibowo",
+"Alif Muhammad Asshiddiq",
+"Rendy Destara Firmanto",
+"Okta Adygantara",
+"Arda Fikri Saudi",
+"Ghivari Zakaria",
+"Januar Rosydi",
+"Luky Rahman",
+"Nestya  Arum Damayanti",
+"Reinhard Kansai Rumbiak",
+"Komang Maha Saputra",
+"Bagus Irfandi",
+"Al Arif Rahmadika Putra Wicaksono",
+"Mohammad Nurrahman Bahtiar",
+"M. Fakhrizal Setyahadi",
+"Tedy Dwi Indrawan",
+"Galang Cahya Ganggawa",
+"Naufal As'Ad Taufiqurrahman",
+"Ahmad Iqbal Yunus",
+"Ahmad Badruz Zaman", 
+"Firmansyah Rizkiawan Nugraha",
+"Dimas Setya Priambodo",
+"Rendra Pratama Putra",
+"Alifand Masrizky Putra Rosid",
+"Lani Nuralita Dian Pertiwi",
+"Arizky Vebby Widardo",
+"Harits Yulianta Pratama",
+"Christophorus Bimo Kurniawan Alpha Roosadi",
+"Wildan Harits Prasetyo",
+"Andri Pratama Putra",
+"Maritha Imelda Estyana Saputri",
+"Siti Sholikah",
+"Iqbal Hudzalfah Zahrani",
+"Muhammad Iqbal Alhabsyi"
+};
+  public static void cariMhs (String kata){
+    int i=0;
+    do{
+      if(daftarNama[i].toLowerCase().contains(kata.toLowerCase()) == true){
+        System.out.println(daftarNim[i]+"\t"+daftarNama[i]);
+      } 
+      i++;
+    }while(i<daftarNama.length);
+  } 
+  
+  
+public static int seqSortnim(String nim)
+  {
+    int i=0;
+    int idx=-1;
+    do{
+      if(daftarNim[i].equalsIgnoreCase(nim))
+      {
+        idx=i;
+      }
+      i++;
+    }
+    while ((i<daftarNim.length)&&(idx==-1));
+      return idx;
+  
+  }
+ 
+public static void main(String[]args)throws IOException
+{
+   BufferedReader br = new BufferedReader (new InputStreamReader(System.in)); 
+  Scanner sc=new Scanner(System.in);
+  String nama="";
+  String nim;
+  //boolean keluar=false;
+  int k=-1;
+  int count=0;
+  
+  do{
+  System.out.println("FORM LOGIN :");
+  System.out.print("ID       : ");
+  String user=sc.next();
+  System.out.print("PASSWORD : ");
+  String sandi=sc.next();
+  for (int i=0;i<id.length;i++)
+  {
+    if(user.equals(id[i][0])&&sandi.equals(id[i][1]))
+    {
+      count=4;
+      k=i;
+    }
+  }
+  count++;
+  }while(count<3);
+  if(k==-1)
+  {
+  System.out.println("Anda Sudah Mencoba 3x!\nSystem Lock.");
+  System.exit(0);
+  }
+  System.out.println("SELAMAT DATANG "+id[k][0]);
+  do{
+     
+  System.out.println("\n1.Mencari by Kata"); 
+  System.out.println("2.Mencari by NIM");
+  System.out.println("3.Menghapus data by NIM");
+  System.out.println("4.Mengupdate data by NIM");
+  System.out.println("5.Menambahkan data ");
+  System.out.println("6.View All Data");
+  System.out.println("7.Keluar");
+  System.out.print("Masukan Pilihan : ");
+  int pil=sc.nextInt();  
+  
+  switch (pil){
+  
+    case 1:
+     System.out.print("Masukkan Nama :");
+     String cari = br.readLine(); 
+     cariMhs(cari);
+      break;
+    case 2:
+      
+      System.out.print("Masukan NIM :");
+      nim=sc.next();
+      int hasil1=seqSortnim(nim);
+     
+      if(hasil1==-1)
+      {
+        System.out.println("NIM : "+nim+ " Tidak ditemukan" );
+      }
+      else
+      {
+        System.out.println("\nNIM : "+nim+ " Ada pada index :"+hasil1);
+        System.out.println("Nama: "+daftarNama[hasil1]+"\n");
+      }
+      break;
+    case 3 :
+      //hapus data
+      int index=-1;
+      int j=-1;
+      String []newnim=new String[daftarNim.length-1];
+       String []newnama=new String[daftarNama.length-1]; 
+       System.out.print("Masukan NIM yang akan dihapus");
+       String hapus=sc.next();
+       //mencari
+       for (int i=0;i<daftarNim.length;i++)
+       {
+         if (daftarNim[i].equals(hapus))
+         {
+           index=i;
+           j=i;
+         }
+       }
+       if(index==-1)
+       {
+         System.out.println("Data tidak ketemu!");
+        break;
+       }
+       System.out.print("Apakah anda akan menghapus NIM "+daftarNim[index]+" NAMA :"+daftarNama[index]+" ?[y/n]");
+        String jawab=sc.next();
+       if (jawab.equalsIgnoreCase("y")){
+         //memindah semua data sebelum index  
+         /*for (int i=0;i<index;i++)
+         {
+           newnim[i]=daftarNim[i];
+           newnama[i]=daftarNama[i];
+         }*/
+         System.arraycopy(daftarNim,0,newnim,0,index);
+         System.arraycopy(daftarNama,0,newnama,0,index);
+         
+         //mengisi sesudah index
+         /*for (int i=index+1;i<daftarNim.length;i++)
+         {
+           newnim[j]=daftarNim[i];
+           newnama[j]=daftarNama[i];
+           j++;
+         }*/
+         System.arraycopy(daftarNim,(index+1),newnim,index,(daftarNim.length-index)-1);
+         System.arraycopy(daftarNama,(index+1),newnama,index,(daftarNama.length-index)-1);
+         
+         //memindah array baru ke array lama kembali
+         daftarNim=new String[newnim.length];
+         daftarNama=new String[newnama.length];
+         /*for (int i=0;i<newnim.length;i++)
+         {
+           daftarNim[i]=newnim[i];
+           daftarNama[i]=newnama[i];
+         }*/
+         System.arraycopy(newnim,0,daftarNim,0,newnim.length);
+         System.arraycopy(newnama,0,daftarNama,0,newnama.length);
+
+       }
+      break;
+    case 4 :
+       int idx=-1;
+       System.out.print("Masukan NIM yang akan diupdate");
+       String update=sc.next();
+          for (int i=0;i<daftarNim.length;i++)
+          {
+            if (daftarNim[i].equals(update))
+            {
+              idx=i;
+              
+            }
+          }
+          if(idx==-1)
+          {
+            System.out.println("Data tidak ketemu!");
+            break;
+          }
+          System.out.print("Apakah anda akan mengupdate NIM "+daftarNim[idx]+" NAMA :"+daftarNama[idx]+" ?[y/n]");
+          jawab=sc.next();
+          if (jawab.equalsIgnoreCase("y")){
+          System.out.print("Masukan Nama Baru Pada NIM:"+daftarNim[idx]+" : ");
+          String hasil=sc.next();
+          daftarNama[idx]=hasil;
+          
+          }
+      break;
+    case 5 :
+       String []newnim1=new String[daftarNim.length];
+       String []newnama1=new String[daftarNama.length]; 
+       System.out.print("Masukan NIM yang akan ditambahkan");
+         String tnim=sc.next();
+        System.out.print("Masukan Nama Mahasiswa yang akan ditambahkan");
+         String tnama=sc.next();
+         System.arraycopy(daftarNim,0,newnim1,0,daftarNim.length);
+         System.arraycopy(daftarNama,0,newnama1,0,daftarNama.length);
+        daftarNim=new String[daftarNim.length+1];
+        daftarNama=new String[daftarNama.length+1];
+        System.arraycopy(newnim1,0,daftarNim,0,newnim1.length);
+         System.arraycopy(newnama1,0,daftarNama,0,newnama1.length);
+        
+        daftarNim[daftarNim.length-1]=tnim;
+        daftarNama[daftarNama.length-1]=tnama;
+        
+        
+      break;  
+    case 6 :
+      for(int i=0;i<daftarNim.length;i++)
+    {
+      System.out.println(daftarNim[i]+"\t"+daftarNama[i]);
+    }
+      break;
+     case 7 :
+      System.exit(0);
+      break;
+  
+  }
+  
+ 
+
+}
+  while(true);
+}
+
+} 
